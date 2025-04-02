@@ -13,19 +13,19 @@ boolean jogoAtivo = true;
 boolean introducaoAtiva = true;
 
 void setup() {
-  size(400, 600); // Tamanho reduzido para caber melhor
+  size(400, 600); 
   background(0);
   textAlign(CENTER, CENTER);
   reiniciarJogo();
 }
 
 void draw() {
-  background(20, 20, 50); // Fundo azul escuro
+  background(20, 20, 50); 
   
   if (introducaoAtiva) {
     // Tela de introdução
-    fill(255, 215, 0); // Amarelo dourado
-    textSize(24); // Fonte menor para caber
+    fill(255, 215, 0); 
+    textSize(24); 
     text("Jogo do Marciano", width/2, 50);
     fill(255);
     textSize(16);
@@ -51,7 +51,7 @@ void draw() {
     if (!recordes.isEmpty()) {
       fill(255);
       textSize(16);
-      text("Melhores Jogadas:", width/2, height - 120); // Ajustado para caber
+      text("Melhores Jogadas:", width/2, height - 120); 
       Collections.sort(recordes);
       for (int i = 0; i < min(3, recordes.size()); i++) {
         fill(173, 216, 230); // Azul claro
@@ -124,7 +124,7 @@ void keyPressed() {
 }
 
 void reiniciarJogo() {
-  numeroSecreto = int(random(1, 101)); // Número entre 1 e 100
+  numeroSecreto = int(random(1, 101)); 
   tentativas = 0;
   acertou = false;
   entrada = "";

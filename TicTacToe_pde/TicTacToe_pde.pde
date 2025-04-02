@@ -1,23 +1,20 @@
-// Variáveis do jogo
-char[][] board = new char[3][3]; // Tabuleiro 3x3
-boolean playerVsPlayer = false;  // Modo: false = vs Computador, true = vs Jogador
-int currentPlayer = 1;           // 1 = 'X', 2 = 'O'
-boolean gameOver = false;        // Controla se o jogo terminou
+char[][] board = new char[3][3];
+boolean playerVsPlayer = false;
+int currentPlayer = 1;
+boolean gameOver = false;
 String message = "Jogador 1 (X), sua vez!";
-int screen = 0;                  // 0 = Boas-vindas, 1 = Menu, 2 = Jogo
+int screen = 0;
 
-// Configurações iniciais
 void setup() {
-  size(600, 700); // Tamanho da janela
-  resetGame();    // Inicializa o tabuleiro
+  size(600, 700);
+  resetGame();
   textAlign(CENTER, CENTER);
 }
 
-// Reinicia o jogo
 void resetGame() {
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
-      board[i][j] = ' '; // Limpa o tabuleiro
+      board[i][j] = ' ';
     }
   }
   currentPlayer = 1;
@@ -25,7 +22,6 @@ void resetGame() {
   message = "Jogador 1 (X), sua vez!";
 }
 
-// Desenha a interface
 void draw() {
   if (screen == 0) {
     drawWelcomeScreen();
@@ -36,52 +32,44 @@ void draw() {
   }
 }
 
-// Tela 1: Boas-vindas
 void drawWelcomeScreen() {
-  background(245, 245, 220); // Fundo bege claro (igual ao jogo)
-  fill(139, 69, 19); // Marrom escuro (igual ao jogo)
+  background(245, 245, 220);
+  fill(139, 69, 19);
   textSize(50);
   text("Bem-vindo ao", width/2, height/2 - 50);
   text("Jogo da Velha", width/2, height/2 + 10);
-  fill(160, 82, 45); // Marrom médio (botões do jogo)
+  fill(160, 82, 45);
   textSize(30);
   text("Aperte Enter para começar", width/2, height/2 + 100);
 }
 
-// Tela 2: Menu de escolha
 void drawMenuScreen() {
-  background(245, 245, 220); // Fundo bege claro (igual ao jogo)
-  fill(139, 69, 19); // Marrom escuro (igual ao jogo)
+  background(245, 245, 220);
+  fill(139, 69, 19);
   textSize(40);
   text("Escolha o modo de jogo", width/2, 150);
   
-  // Botões de opções
   drawOptionButton(200, 300, 200, 60, "1 vs 1");
   drawOptionButton(200, 400, 200, 60, "vs Computador");
 }
 
-// Tela 3: Jogo
 void drawGameScreen() {
-  background(245, 245, 220); // Fundo bege claro
+  background(245, 245, 220);
   
-  // Sombra do tabuleiro
   noStroke();
   fill(0, 0, 0, 50);
   rect(155, 155, 310, 310, 15);
   
-  // Desenha o tabuleiro
   strokeWeight(4);
   stroke(139, 69, 19);
   fill(255, 245, 230);
   rect(150, 150, 300, 300, 10);
   
-  // Linhas do tabuleiro
   line(250, 150, 250, 450);
   line(350, 150, 350, 450);
   line(150, 250, 450, 250);
   line(150, 350, 450, 350);
   
-  // Desenha os símbolos no tabuleiro
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       float x = 200 + j * 100;
@@ -94,7 +82,6 @@ void drawGameScreen() {
     }
   }
   
-  // Área de mensagem
   fill(139, 69, 19, 200);
   noStroke();
   rect(50, 70, 500, 60, 10);
@@ -102,17 +89,15 @@ void drawGameScreen() {
   textSize(28);
   text(message, width/2, 100);
   
-  // Botão "Voltar"
   drawBackButton(20, 20, 100, 40);
 }
 
-// Desenha botão de opção no menu
 void drawOptionButton(int x, int y, int w, int h, String label) {
   boolean hover = mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h;
   if (hover) {
-    fill(210, 180, 140); // Bege se hover (igual ao jogo)
+    fill(210, 180, 140);
   } else {
-    fill(160, 82, 45); // Marrom padrão (igual ao jogo)
+    fill(160, 82, 45);
   }
   stroke(139, 69, 19);
   strokeWeight(2);
@@ -122,13 +107,12 @@ void drawOptionButton(int x, int y, int w, int h, String label) {
   text(label, x + w/2, y + h/2);
 }
 
-// Desenha o botão "Voltar"
 void drawBackButton(int x, int y, int w, int h) {
   boolean hover = mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h;
   if (hover) {
-    fill(210, 180, 140); // Bege se hover
+    fill(210, 180, 140);
   } else {
-    fill(160, 82, 45); // Marrom padrão
+    fill(160, 82, 45);
   }
   stroke(139, 69, 19);
   strokeWeight(2);
@@ -138,7 +122,6 @@ void drawBackButton(int x, int y, int w, int h) {
   text("Voltar", x + w/2, y + h/2);
 }
 
-// Desenha 'X' com efeito
 void drawX(float x, float y) {
   stroke(220, 20, 60);
   strokeWeight(10);
@@ -150,7 +133,6 @@ void drawX(float x, float y) {
   line(x + 35, y - 35, x - 35, y + 35);
 }
 
-// Desenha 'O' com efeito
 void drawO(float x, float y) {
   noFill();
   stroke(70, 130, 180);
@@ -161,30 +143,26 @@ void drawO(float x, float y) {
   ellipse(x, y, 70, 70);
 }
 
-// Verifica entrada do teclado
 void keyPressed() {
   if (screen == 0 && key == ENTER) {
-    screen = 1; // Vai para o menu de escolha
+    screen = 1;
   }
 }
 
-// Verifica clique do mouse
 void mousePressed() {
   if (screen == 1) {
-    // Seleção de modo no menu
-    if (mouseY > 300 && mouseY < 360 && mouseX > 200 && mouseX < 400) { // 1 vs 1
+    if (mouseY > 300 && mouseY < 360 && mouseX > 200 && mouseX < 400) {
       playerVsPlayer = true;
       screen = 2;
       resetGame();
       message = "Modo vs Jogador. Jogador 1 (X), sua vez!";
-    } else if (mouseY > 400 && mouseY < 460 && mouseX > 200 && mouseX < 400) { // vs Computador
+    } else if (mouseY > 400 && mouseY < 460 && mouseX > 200 && mouseX < 400) {
       playerVsPlayer = false;
       screen = 2;
       resetGame();
       message = "Modo vs Computador. Jogador 1 (X), sua vez!";
     }
   } else if (screen == 2) {
-    // Botão "Voltar"
     if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 60) {
       screen = 1;
       resetGame();
@@ -196,7 +174,6 @@ void mousePressed() {
       return;
     }
     
-    // Jogada no tabuleiro
     if (mouseX > 150 && mouseX < 450 && mouseY > 150 && mouseY < 450) {
       int row = (mouseY - 150) / 100;
       int col = (mouseX - 150) / 100;
@@ -227,7 +204,6 @@ void mousePressed() {
   }
 }
 
-// Movimento do computador (jogada aleatória)
 void computerMove() {
   if (gameOver) return;
   
@@ -257,7 +233,6 @@ void computerMove() {
   }
 }
 
-// Verifica se há um vencedor
 boolean checkWin() {
   for (int i = 0; i < 3; i++) {
     if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][1] == board[i][2]) return true;
@@ -268,7 +243,6 @@ boolean checkWin() {
   return false;
 }
 
-// Verifica se o tabuleiro está cheio
 boolean isBoardFull() {
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {

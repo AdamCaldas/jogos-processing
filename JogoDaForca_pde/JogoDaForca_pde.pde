@@ -30,7 +30,7 @@ void draw() {
 void desenharTelaInicial() {
   background(50, 150, 200);
   fill(255);
-  textSize(40); // Tamanho reduzido para caber no círculo
+  textSize(40); 
   text("Jogo da Forca", width/2, height/3);
   fill(0, 200, 0);
   rect(width/2 - 100, height/2, 200, 80, 20);
@@ -40,7 +40,7 @@ void desenharTelaInicial() {
   stroke(255);
   strokeWeight(2);
   noFill();
-  ellipse(width/2, height/3, 300, 100); // Círculo maior que o texto
+  ellipse(width/2, height/3, 300, 100); 
 }
 
 void desenharMenu() {
@@ -64,7 +64,7 @@ void desenharBotao(String texto, float x, float y, float w, float h) {
 void desenharJogo() {
   background(240);
   
-  // Botão de voltar ao menu (canto superior esquerdo)
+  // Botão de voltar ao menu 
   fill(200);
   rect(10, 10, 100, 50, 10);
   fill(0);
@@ -73,7 +73,7 @@ void desenharJogo() {
   stroke(0);
   strokeWeight(2);
   
-  // Forca maior e mais alta
+  
   desenharForca(6 - tentativasRestantes);
   
   // Área à direita para a palavra (fundo azul)
@@ -83,7 +83,7 @@ void desenharJogo() {
   textSize(32);
   text(palavraAtual, 575, 250);
   
-  // Letras usadas acima da palavra
+  
   String usadas = "Letras usadas: ";
   for (int i = 0; i < letrasUsadasCount; i++) {
     usadas += letrasUsadas[i] + " ";
@@ -92,10 +92,10 @@ void desenharJogo() {
   textSize(20);
   text(usadas, 575, 150);
   
-  // Tentativas restantes acima da palavra
+  
   text("Tentativas: " + tentativasRestantes, 575, 180);
   
-  // Mensagem de fim de jogo
+  
   if (jogoAcabou) {
     fill(0, 0, 255);
     textSize(28);
@@ -193,34 +193,34 @@ void iniciarJogo() {
 }
 
 void desenharForca(int erros) {
-  stroke(139, 69, 19); // Marrom
-  strokeWeight(6); // Linhas mais grossas para parecer maior
+  stroke(139, 69, 19); 
+  strokeWeight(6); 
   
-  // Forca maior e alinhada com a área da palavra
-  float xBase = 150; // Posição base
-  float yBase = 300; // Alinhada com a palavra (y = 200 a 300)
-  line(xBase - 75, yBase + 100, xBase + 75, yBase + 100); // Chão maior
-  line(xBase, yBase + 100, xBase, yBase - 100); // Poste vertical maior
-  line(xBase, yBase - 100, xBase + 75, yBase - 100); // Poste horizontal maior
-  line(xBase + 75, yBase - 100, xBase + 75, yBase - 80); // Corda
-  
+ 
+  float xBase = 150; 
+  float yBase = 300; 
+  line(xBase - 75, yBase + 100, xBase + 75, yBase + 100); 
+  line(xBase, yBase + 100, xBase, yBase - 100); 
+  line(xBase, yBase - 100, xBase + 75, yBase - 100); 
+  line(xBase + 75, yBase - 100, xBase + 75, yBase - 80); 
+  //corpo
   if (erros >= 1) {
     noFill();
-    ellipse(xBase + 75, yBase - 50, 80, 80); // Cabeça maior
+    ellipse(xBase + 75, yBase - 50, 80, 80); 
   }
   if (erros >= 2) {
-    line(xBase + 75, yBase - 10, xBase + 75, yBase + 50); // Corpo maior
+    line(xBase + 75, yBase - 10, xBase + 75, yBase + 50); 
   }
   if (erros >= 3) {
-    line(xBase + 75, yBase, xBase + 35, yBase - 40); // Braço esquerdo
+    line(xBase + 75, yBase, xBase + 35, yBase - 40); 
   }
   if (erros >= 4) {
-    line(xBase + 75, yBase, xBase + 115, yBase - 40); // Braço direito
+    line(xBase + 75, yBase, xBase + 115, yBase - 40); 
   }
   if (erros >= 5) {
-    line(xBase + 75, yBase + 50, xBase + 35, yBase + 90); // Perna esquerda
+    line(xBase + 75, yBase + 50, xBase + 35, yBase + 90); 
   }
   if (erros >= 6) {
-    line(xBase + 75, yBase + 50, xBase + 115, yBase + 90); // Perna direita
+    line(xBase + 75, yBase + 50, xBase + 115, yBase + 90); 
   }
 }
